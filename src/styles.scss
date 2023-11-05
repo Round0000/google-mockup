@@ -104,6 +104,7 @@ header {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     height: 60vh;
     overflow: auto;
+    z-index: 5;
 
     &::-webkit-scrollbar {
       width: .6em;
@@ -315,6 +316,7 @@ main {
 
     input {
       all: unset;
+      width: 100%;
     }
 
     input:placeholder-shown {
