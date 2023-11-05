@@ -1,1 +1,417 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  font-family: Arial, sans-serif;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1.5em;
+  padding: 1.2em;
+  font-size: 0.8rem;
+  position: relative;
+
+  .profile-picture-icon {
+    border-radius: 100%;
+    overflow: hidden;
+    display: flex; justify-content: center; align-items: center;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  nav ul {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    list-style: none;
+    margin-right: 0.5em;
+
+    a {
+      display: block;
+      padding: .5em .2em;
+      text-decoration: none;
+      color: #000000de;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .apps-menu-button,
+  .profile-menu-button {
+    all: unset;
+    width: 2.5em;
+    padding: 4px;
+    border-radius: 100%;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+
+    &::before {
+      content: "";
+      inset: -4px;
+      position: absolute;
+      background-color: #eee;
+      border-radius: 100%;
+      z-index: -1;
+      opacity: 0;
+    }
+
+    &:focus::before {
+      background-color: #ddd;
+    }
+
+    &:hover::before, &:focus-visible::before {
+      opacity: 1;
+    }
+  }
+
+  .apps-menu-button {
+    svg {
+      fill: #777;
+      width: 80%;
+    }
+  }
+
+  .popup-menu {
+    position: absolute;
+    right: 1.3em;
+    top: 90%;
+    background-color: #e9eef6;
+    border: 1px solid #0002;
+    border-radius: calc(0.6em + 20px);
+    padding: 0.6em;
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    height: 60vh;
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+      width: .6em;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #0002;
+      background: linear-gradient(to bottom, transparent 15%, #0002 15% 85%, transparent 0);
+      border-radius: 1em;
+
+    }
+
+    ul {
+      background-color: #f8fafd;
+      padding: 2em;
+      display: grid;
+      gap: 0.5em;
+      grid-template-columns: repeat(3, 1fr);
+      list-style: none;
+      margin-bottom: 0.25em;
+
+      &:first-of-type {
+        border-radius: 20px;
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+      }
+      &:last-of-type {
+        border-radius: 20px;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+      }
+
+      li {
+        min-height: 7em;
+      }
+
+      a {
+        display: grid;
+        gap: 0.75em;
+        grid-template-rows: 4em auto;
+        text-decoration: none;
+        color: #202140;
+        padding: 0.5em;
+        border-radius: 16px;
+        aspect-ratio: 1 / 1;
+        width: 7em;
+
+        &:hover, &:focus-visible {
+          background-color: #0001;
+        }
+
+        &:focus-visible {
+          outline: 1px solid #0b57d0;
+        }
+
+        .icon {
+          width: 45%;
+          margin: auto;
+        }
+
+        img {
+          display: block;
+          width: 100%;
+        }
+
+        span {
+          max-width: 100%;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          text-align: center;
+        }
+
+        &:hover {
+          position: absolute;
+          height: max-content;
+
+          span {
+            white-space: wrap;
+            text-overflow: initial;
+            height: max-content;
+          }
+        }
+      }
+    }
+  }
+
+  .menu-other-products-link {
+    display: flex;
+    text-decoration: none;
+    padding: 0.75em 1.25em;
+    border-radius: 4em;
+    color: #0b57d0;
+    margin: 2em auto;
+    max-width: 18em;
+    text-align: center;
+    font-size: 0.9rem;
+    border: 1px solid #747775;
+    transition: background-color 0.3s;
+
+    &:hover,
+    &:focus-visible {
+      background-color: hsla(217, 90%, 20%, 0.05);
+    }
+  }
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 2em;
+  flex: 1;
+
+  .search-bar {
+    width: 36em;
+    max-width: 92vw;
+    display: grid;
+    grid-template-columns: auto 1fr auto auto auto;
+    align-items: center;
+    border: 1px solid #ddd;
+    padding: 0.5em 1em;
+    border-radius: 3em;
+    gap: 0.8em;
+    line-height: 1;
+    margin: 1em auto 2em;
+
+    &:hover {
+      box-shadow: 0 2px 5px 3px #0001, 0 1px 1px #0003;
+    }
+
+    svg {
+      max-width: 100%;
+    }
+
+    .search-icon {
+      width: 1.3em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      svg {
+        fill: #aaa;
+      }
+    }
+
+    .search-mic-button,
+    .search-picture-button,
+    .search-clear-button {
+      all: unset;
+      width: 1.5em;
+      padding: 0.2em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      cursor: pointer;
+
+      &::before {
+        content: attr(data-tooltip);
+        position: absolute;
+        width: max-content;
+        padding: 0.6em 1em;
+        background-color: #222;
+        box-shadow: 1px 1px 2px #0003;
+        color: #fff;
+        top: calc(100% + 1em);
+        font-size: 0.7rem;
+        font-weight: 600;
+        left: 50%;
+        transform: translateX(-50%);
+        display: none;
+        z-index: 1;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        width: 1em;
+        height: 1em;
+        background-color: #222;
+        rotate: 45deg;
+        top: calc(100% + 1em - 0.5em);
+        display: none;
+      }
+
+      &:hover,
+      &:focus-visible {
+        &::before {
+          display: block;
+        }
+        &::after {
+          display: block;
+        }
+      }
+    }
+
+    .search-clear-button {
+      width: 2.5em;
+      cursor: pointer;
+      border-right: 1px solid #ddd;
+
+      svg {
+        fill: #666;
+        width: 60%;
+      }
+    }
+
+    input {
+      all: unset;
+    }
+
+    input:placeholder-shown {
+      grid-column: 2 / 4;
+
+      & + .search-clear-button {
+        display: none !important;
+      }
+    }
+  }
+
+  .main-actions {
+    display: flex;
+    gap: 0.8em;
+
+    button {
+      all: unset;
+
+      background-color: #f8f9fa;
+      font-size: 0.9rem;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      cursor: pointer;
+      color: rgb(60, 64, 67);
+      overflow: hidden;
+      position: relative;
+      height: 2.3em;
+
+      &:hover,
+      &:focus-visible {
+        border-color: #ddd;
+        box-shadow: 0 1px 1px #0002;
+      }
+
+      span {
+        display: block;
+        padding: 0.6em 1.2em;
+        text-align: center;
+        transition: all 0.2s;
+      }
+
+      &.lucky-button {
+        &:hover,
+        &:focus-visible {
+          span {
+            transition: all 0.4s 0.2s;
+            transform: translateY(-300%);
+          }
+        }
+      }
+    }
+  }
+}
+
+footer {
+  background-color: #f2f2f2;
+  font-size: 0.9rem;
+  color: #777;
+
+  .toprow {
+    border-bottom: 1px solid #dadce0;
+    padding: 1.2em 2em;
+  }
+
+  a {
+    text-decoration: none;
+    display: flex;
+    align-items: baseline;
+    gap: 0.5em;
+    color: inherit;
+    padding: 1em;
+
+    img {
+      max-height: 1em;
+    }
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .bottomrows {
+    display: flex;
+    justify-content: space-between;
+    padding-inline: 1em;
+  }
+
+  @media (max-width: 90em) {
+    .bottomrows {
+      flex-direction: column;
+    }
+  }
+
+  .row {
+    ul {
+      display: flex;
+      justify-content: center;
+      list-style-type: none;
+    }
+  }
+}
